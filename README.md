@@ -35,3 +35,14 @@ The application will allow users to:
 - Testing and debugging
 - UI improvements
 - Final presentation preparation
+
+
+
+## Technical Scope
+
+-Flask: The main framework of the web application
+-SQLite3: The database used to store application data permanently
+-Requests / JSON: sends requests to API / is the data format returned by APIs
+-Folium: used to create interactive maps ( for approximate locations)
+-HTML: used to create the structure of web pages
+-CSS: used to style and design the pages
