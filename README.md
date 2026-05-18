@@ -46,3 +46,17 @@ The application will allow users to:
 - Folium: used to create interactive maps ( for approximate locations)
 - HTML: used to create the structure of web pages
 - CSS: used to style and design the pages
+
+
+## Initial API's Used:
+
+- University Domains API: https://github.com/Hipo/university-domains-list-api
+- REST Countries API: https://restcountries.com/
+- Open-Meteo Geocoding: https://open-meteo.com/en/docs/geocoding-api
+- Nominatim: https://nominatim.org/release-docs/latest/api/Overview/
+
+## Backend Layer Plan:
+
+- College: ID, Name, Country, Website, Domain
+- Search: ID, History, Searches, Results
+- Favorites: ID, Saved at, Notes
