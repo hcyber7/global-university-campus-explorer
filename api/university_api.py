@@ -1,11 +1,11 @@
 import requests
 
-BASE_URL = "https://restcountries.com/v3.1/all?fields=name,flags"
+BASE_URL = "http://universities.hipolabs.com/search"
 
 
-def get_country_info(country):
+def search_universities(country):
 
-    url = BASE_URL + country
+    url = f"{BASE_URL}?country={country}"
 
     response = requests.get(url)
 
@@ -14,14 +14,5 @@ def get_country_info(country):
 
     return []
 
-
-results = get_country_info("Germany")
-
-country = results[0]
-
-print("Country:", country["name"]["common"])
-print("Capital:", country["capital"][0])
-print("Region:", country["region"])
-
-
-hey its me
+results = search_universities("Germany")
+print(results)
