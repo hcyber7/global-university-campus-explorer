@@ -53,7 +53,6 @@ The application will allow users to:
 - University Domains API: https://github.com/Hipo/university-domains-list-api
 - REST Countries API: https://restcountries.com/
 - Open-Meteo Geocoding: https://open-meteo.com/en/docs/geocoding-api
-- Nominatim: https://nominatim.org/release-docs/latest/api/Overview/
 
 ## Backend Layer Plan:
 
