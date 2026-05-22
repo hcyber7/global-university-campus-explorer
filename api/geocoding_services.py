@@ -1,41 +1,26 @@
 import requests
 
-
-BASE_URL = "https://nominatim.openstreetmap.org/search"
-
-
-def get_location(university_name):
-
+def get_location(place_name):
+    """Get coordinates using Nominatim"""
     try:
+        url = "https://nominatim.openstreetmap.org/search"
+        response = requests.get(url, params={
+            "q": place_name,
+            "format": "json",
+            "limit": 1
+        }, headers={"User-Agent": "UniversityExplorer"}, timeout=10)
+        
+        if response.status_code == 200:
+            data = response.json()
+            if data:
+                return float(data[0]['lat']), float(data[0]['lon'])
+        return None
+    except:
+        return None
 
-        response = requests.get(
-            BASE_URL,
-            params={
-                "q": university_name,
-                "format": "json",
-                "limit": 1
-            },
-            headers={
-                "User-Agent": "GlobalUniversityExplorer"
-            }
-        )
-
-        response.raise_for_status()
-
-        data = response.json()
-
-        if not data:
-            return None
-
-        location = {
-            "latitude": data[0]["lat"],
-            "longitude": data[0]["lon"]
-        }
-
-        return location
-
-    except requests.exceptions.RequestException as e:
-
-        print(f"Geocoding Error: {e}")
-
+def get_country_center(country_name):
+    """Get country center coordinates"""
+    try:
+        return get_location(country_name)
+    except:
         return None

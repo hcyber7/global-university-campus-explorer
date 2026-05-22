@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Map - Global University Explorer{% endblock %}
+
+{% block content %}
+<h2>🗺️ Interactive University Map</h2>
+
+<div style="margin-top: 2rem;">
+    <p>Interactive map of universities from your last search:</p>
+    <iframe src="/static/maps/university_map.html" style="width: 100%; height: 600px; border: none; border-radius: 10px; margin-top: 1rem;"></iframe>
+</div>
+
+<div style="text-align: center; margin-top: 2rem;">
+    <a href="/search" class="btn">🔍 New Search</a>
+</div>
+{% endblock %}
