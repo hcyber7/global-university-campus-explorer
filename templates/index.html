@@ -43,6 +43,16 @@
                 </a>
             </p>
 
+        <form method="POST" action="/favorite">
+
+            <input type="hidden" name="name" value="{{ university.name }}">
+            <input type="hidden" name="country" value="{{ university.country }}">
+            <input type="hidden" name="website" value="{{ university.web_pages[0] }}">
+
+            <button type="submit">Save to Favorites</button>
+
+        </form>
+
         </div>
 
     {% endfor %}

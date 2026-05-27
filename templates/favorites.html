@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Favorites</title>
+</head>
+
+<body>
+
+    <h1>Saved Favorite Universities</h1>
+
+    {% if favorites %}
+
+        {% for university in favorites %}
+
+            <div style="border:1px solid black; padding:15px; margin:10px;">
+
+                <h3>{{ university.name }}</h3>
+
+                <p>Country: {{ university.country }}</p>
+
+                <p>
+                    Website:
+                    <a href="{{ university.website }}" target="_blank">
+                        Visit Website
+                    </a>
+                </p>
+
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <h2>No favorites saved yet.</h2>
+
+    {% endif %}
+
+</body>
+</html>
