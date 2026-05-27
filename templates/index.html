@@ -1,12 +1,57 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Global University Explorer</title>
 </head>
 
 <body>
+
     <h1>Global University & Campus Explorer</h1>
 
-    <p>Welcome to our university search application.</p>
+    <p>Search for universities by country.</p>
+
+    <form method="POST">
+
+<input 
+    type="text" 
+    name="country" 
+    placeholder="Enter country name"
+    value="{{ searched_country if searched_country else '' }}"
+>
+
+        <button type="submit">Search</button>
+
+    </form>
+
+{% if universities %}
+
+    <h2>Search Results</h2>
+
+    {% for university in universities %}
+
+        <div style="border:1px solid black; padding:15px; margin:10px;">
+
+            <h3>{{ university.name }}</h3>
+
+            <p>Country: {{ university.country }}</p>
+
+            <p>
+                Website:
+                <a href="{{ university.web_pages[0] }}" target="_blank">
+                    Visit Website
+                </a>
+            </p>
+
+        </div>
+
+    {% endfor %}
+
+{% elif searched_country %}
+
+    <h2>No universities found for "{{ searched_country }}"</h2>
+
+{% endif %}
+
 </body>
 </html>
