@@ -120,26 +120,22 @@ def get_stats():
         'unique_countries': unique_countries
     }
 
-def remove_favorite(name):  # Remove a university from favorites by name
+def remove_favorites(name):
 
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
 
-    c.execute(
-        "DELETE FROM favorites WHERE name = ?",
-        (name,)
-    )
+    c.execute('DELETE FROM favorites WHERE name = ?', (name,))
 
-    conn.commit()
-    conn.close()
+    conn.commit() # Commit the transaction to save changes
+    conn.close() # Close the database connection
 
-
-def clear_all_favorites(): # Clear all entries from the favorites table
+def clear_all_favorites():
 
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
 
-    c.execute("DELETE FROM favorites")
+    c.execute('DELETE FROM favorites') # Delete all records from the favorites table
 
-    conn.commit()
-    conn.close()
+    conn.commit() # Commit the transaction to save changes
+    conn.close() # Close the database connection
