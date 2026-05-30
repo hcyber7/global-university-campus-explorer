@@ -13,15 +13,23 @@
 
         {% for search in history %}
 
-            <div style="border:1px solid black; padding:15px; margin:10px;">
+<div style="border:1px solid black; padding:15px; margin:10px;">
 
-                <p><strong>{{ search.query }}</strong></p>
+    <p><strong>{{ search.query }}</strong></p>
+    <p>Results Found: {{ search.count }}</p>
+    <p>Date: {{ search.date }}</p>
 
-                <p>Results Found: {{ search.count }}</p>
+    <form method="POST" action="/delete_history">
 
-                <p>Date: {{ search.date }}</p>
+        <input type="hidden" name="id" value="{{ search.id }}">
 
-            </div>
+        <button type="submit">
+            Delete
+        </button>
+
+    </form>
+
+</div>
 
         {% endfor %}
 
