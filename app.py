@@ -47,7 +47,7 @@ def delete_favorite():
 
     name = request.form["name"]
 
-    remove_favorite(name)
+    remove_favorites(name)
 
     favorites_list = get_favorites()
 
