@@ -5,6 +5,9 @@
     <title>Global University Explorer</title>
 </head>
 
+
+
+
 <body>
 
     <h1>Global University & Campus Explorer</h1>
@@ -12,6 +15,8 @@
     <p>Search for universities by country.</p>
 
 
+
+    
 <form method="POST">   <!-- Form to handle the search functionality, submits to the same route with POST method -->
 <input 
     type="text" 
@@ -24,6 +29,34 @@
 </form>
 
 
+
+
+
+<form method="POST">
+
+    <input
+        type="hidden"
+        name="search_type"
+        value="name"
+    >
+
+    <input
+        type="text"
+        name="name"
+        placeholder="Enter university name"
+    >
+
+    <button type="submit">
+        Search By Name
+    </button>
+
+</form>
+
+
+
+
+
+
 <form action="/favorites">
     <button type="submit">View Favorites</button>
 </form>
@@ -31,6 +64,9 @@
 <form action="/history">
     <button type="submit">View Search History</button>
 </form>
+
+
+
 
 
 {% if universities %}    <!-- If universities are found, display them -->

@@ -1,28 +1,52 @@
 from flask import Flask, render_template, request
-from API.University_api import search_universities
+from API.University_api import search_universities, search_universities_by_name
 from Database.database import add_to_favorites, get_favorites, remove_favorites, clear_all_favorites, record_search, get_search_history, remove_search, clear_search_history, init_db
 
 
 app = Flask(__name__)
 init_db() # Initialize the database when the application starts
 
-@app.route("/", methods=["GET", "POST"]) # Main route to handle the home page and search functionality
+@app.route("/", methods=["GET", "POST"])
 def home():
 
     if request.method == "POST":
 
-        country = request.form["country"]
+        search_type = request.form["search_type"]
 
-        universities = search_universities(country)
+        if search_type == "country":
 
-        record_search(country, len(universities)) #Automatically records/saves the search in the database with the country and number of results found
+            country = request.form["country"]
 
-        return render_template(
-            "index.html",
-            universities=universities,
-            searched_country=country
-        )
-    
+            universities = search_universities(country)
+
+            record_search(
+                f"Country: {country}",
+                len(universities)
+            )
+
+            return render_template(
+                "index.html",
+                universities=universities,
+                searched_country=country
+            )
+
+        elif search_type == "name":
+
+            name = request.form["name"]
+
+            universities = search_universities_by_name(name)
+
+            record_search(
+                f"University: {name}",
+                len(universities)
+            )
+
+            return render_template(
+                "index.html",
+                universities=universities,
+                searched_name=name
+            )
+
     return render_template("index.html")
 
 @app.route("/favorite", methods=["POST"]) # New button to handle saving a university to favorites
