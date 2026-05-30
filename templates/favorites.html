@@ -41,11 +41,22 @@
 
         {% endfor %}
 
-    {% else %}
+{% else %}
 
-        <h2>No favorites saved yet.</h2>
+    <h2>No favorites saved yet.</h2>
 
-    {% endif %}
+{% endif %}
+
+<form method="POST" action="/clear_favorites">
+
+    <button type="submit">
+        Clear All Favorites
+    </button>
+
+</form>
+
+<form action="/">   <!-- Button to go back to the home page -->
+    <button type="submit">Back to Search</button>
 
 </body>
 </html>
