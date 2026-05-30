@@ -12,7 +12,7 @@
     <p>Search for universities by country.</p>
 
 
-<form method="POST">   # Form to search for universities by country
+<form method="POST">   <!-- Form to handle the search functionality, submits to the same route with POST method -->
 <input 
     type="text" 
     name="country" 
@@ -24,18 +24,18 @@
 </form>
 
 
-<form action="/favorites">   # New button to view favorites
+<form action="/favorites">   <!-- New button to view favorites -->
     <button type="submit">View Favorites</button> 
 </form>
 
 
-{% if universities %}    # If universities are found, display them
+{% if universities %}    <!-- If universities are found, display them -->
 
     <h2>Search Results</h2>
 
-    {% for university in universities %}  # Loop through each university and display its details
+    {% for university in universities %}  <!-- Loop through each university and display its details -->
 
-        <div style="border:1px solid black; padding:15px; margin:10px;">    # Simple styling for each university entry
+        <div style="border:1px solid black; padding:15px; margin:10px;">    <!-- Simple styling for each university entry -->
 
             <h3>{{ university.name }}</h3>
 
@@ -43,16 +43,16 @@
 
             <p>
                 Website:
-                <a href="{{ university.web_pages[0] }}" target="_blank">  # Link to the university's website, opens in a new tab
+                <a href="{{ university.web_pages[0] }}" target="_blank">  <!-- Link to the university's website, opens in a new tab -->
                     Visit Website
                 </a>
             </p>
 
-        <form method="POST" action="/favorite">  # Form to save the university to favorites, submits to the /favorite route
+        <form method="POST" action="/favorite">  <!-- Form to save the university to favorites, submits to the /favorite route -->
 
-            <input type="hidden" name="name" value="{{ university.name }}">  # Hidden inputs to pass the university's details to the server when saving to favorites
-            <input type="hidden" name="country" value="{{ university.country }}"> # Hidden input for the country
-            <input type="hidden" name="website" value="{{ university.web_pages[0] }}"> # Hidden input for the website URL
+            <input type="hidden" name="name" value="{{ university.name }}">  <!-- Hidden inputs to pass the university's details to the server when saving to favorites -->
+            <input type="hidden" name="country" value="{{ university.country }}"> <!-- Hidden input for the country -->
+            <input type="hidden" name="website" value="{{ university.web_pages[0] }}"> <!-- Hidden input for the website URL -->
 
             <button type="submit">Save to Favorites</button>
 
@@ -62,7 +62,7 @@
 
     {% endfor %}
 
-{% elif searched_country %}   # If a search was made but no universities were found, display a message
+{% elif searched_country %}   <!-- If a search was made but no universities were found, display a message -->
 
     <h2>No universities found for "{{ searched_country }}"</h2>
 
