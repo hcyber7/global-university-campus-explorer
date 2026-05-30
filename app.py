@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from API.University_api import search_universities
-from Database.database import add_to_favorites, get_favorites, remove_favorite, clear_all_favorites
+from Database.database import add_to_favorites, get_favorites, remove_favorites, clear_all_favorites
 
 app = Flask(__name__)
 
