@@ -87,16 +87,27 @@ def get_favorites():
     conn.close()
     return favorites
 
+
 def get_search_history():
     """Get search history"""
+
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
-    
-    c.execute('SELECT query, results_count, search_date FROM search_history ORDER BY search_date DESC LIMIT 10')
-    history = [{'query': row[0], 'count': row[1], 'date': row[2]} for row in c.fetchall()]
-    
+
+    c.execute(
+        'SELECT id, query, results_count, search_date '
+        'FROM search_history '
+        'ORDER BY search_date DESC LIMIT 10'
+    )
+
+    history = [{'id': row[0], 'query': row[1], 'count': row[2], 'date': row[3]}
+        for row in c.fetchall()
+    ]
+
     conn.close()
     return history
+
+
 
 def get_stats():
     """Get application statistics"""
@@ -120,6 +131,8 @@ def get_stats():
         'unique_countries': unique_countries
     }
 
+
+
 def remove_favorites(name):
 
     conn = sqlite3.connect(DB_PATH)
@@ -127,15 +140,46 @@ def remove_favorites(name):
 
     c.execute('DELETE FROM favorites WHERE name = ?', (name,))
 
-    conn.commit() # Commit the transaction to save changes
-    conn.close() # Close the database connection
+    conn.commit()                               # Commit the transaction to save changes
+    conn.close()                                # Close the database connection
 
-def clear_all_favorites():
+
+
+
+def clear_all_favorites():                      # Clear all favorite universities from the database
 
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
 
-    c.execute('DELETE FROM favorites') # Delete all records from the favorites table
+    c.execute('DELETE FROM favorites')          # Delete all records from the favorites table
 
-    conn.commit() # Commit the transaction to save changes
-    conn.close() # Close the database connection
+    conn.commit()                               # Commit the transaction to save changes
+    conn.close()                                # Close the database connection
+
+
+
+def remove_search(search_id):                   # Remove a specific search from history by its ID
+
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+
+    c.execute(
+        'DELETE FROM search_history WHERE id = ?',
+        (search_id,)
+    )
+
+    conn.commit()
+    conn.close()
+
+
+def clear_search_history():                     # Clear all search history records from the database
+
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+
+    c.execute(
+        'DELETE FROM search_history'
+    )
+
+    conn.commit()
+    conn.close()
