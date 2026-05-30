@@ -1,5 +1,9 @@
 from flask import Flask, render_template, request
-from API.University_api import search_universities, search_universities_by_name, get_country_details
+from API.University_api import (
+    search_universities,
+    search_universities_by_name
+)
+from API.country_api import get_country_details
 from Database.database import add_to_favorites, get_favorites, remove_favorites, clear_all_favorites, record_search, get_search_history, remove_search, clear_search_history, init_db
 
 
