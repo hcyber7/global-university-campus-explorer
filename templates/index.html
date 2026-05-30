@@ -32,7 +32,7 @@
 
 
 
-<form method="POST">
+<form method="POST">  <!-- Form to search for universities by name, submits to the same route with POST method -->
 
     <input
         type="hidden"
@@ -54,18 +54,13 @@
 
 
 
-
-
-
-<form action="/favorites">
+<form action="/favorites">  <!-- Form to navigate to the favorites page, submits a GET request to the /favorites route -->
     <button type="submit">View Favorites</button>
 </form>
 
-<form action="/history">
+<form action="/history">    <!-- Form to navigate to the search history page, submits a GET request to the /history route -->
     <button type="submit">View Search History</button>
 </form>
-
-
 
 
 
@@ -102,9 +97,13 @@
 
     {% endfor %}
 
-{% elif searched_country %}   <!-- If a search was made but no universities were found, display a message -->
+{% elif searched_country %}         # If a country was searched but no universities were found, display a message to the user
 
     <h2>No universities found for "{{ searched_country }}"</h2>
+
+{% elif searched_name %}            # If a university name was searched but no universities were found, display a message to the user
+
+    <h2>No universities found for "{{ searched_name }}"</h2>
 
 {% endif %}
 
