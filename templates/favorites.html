@@ -26,6 +26,17 @@
                     </a>
                 </p>
 
+        <form method="POST" action="/delete_favorite">
+
+                <input
+                type="hidden"
+                name="name"
+                value="{{ university.name }}" >
+
+                <button type="submit"> Remove </button>
+
+        </form>
+
             </div>
 
         {% endfor %}
