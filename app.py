@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from API.University_api import search_universities
-from Database.database import add_to_favorites, get_favorites, remove_favorites, clear_all_favorites
+from Database.database import add_to_favorites, get_favorites, remove_favorites, clear_all_favorites, record_search, get_search_history, remove_search, clear_search_history
 
 app = Flask(__name__)
 
@@ -12,6 +12,8 @@ def home():
         country = request.form["country"]
 
         universities = search_universities(country)
+
+        record_search(country, len(universities)) #Automatically records/saves the search in the database with the country and number of results found
 
         return render_template(
             "index.html",
@@ -65,6 +67,19 @@ def clear_favorites():
         "favorites.html",
         favorites=[]
     )
+
+
+@app.route("/history")
+def history():
+
+    history_list = get_search_history()
+
+    return render_template(
+        "history.html",
+        history=history_list
+    )
+
+
 
 if __name__ == "__main__": # Run the Flask application in debug mode
     app.run(debug=True)
