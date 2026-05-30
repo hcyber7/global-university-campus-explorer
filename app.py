@@ -15,7 +15,8 @@ def home():
 
     if request.method == "POST":
 
-        search_type = request.form["search_type"]
+        search_type = request.form.get("search_type")
+        print(request.form)
 
         if search_type == "country":
 

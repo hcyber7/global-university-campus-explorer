@@ -17,15 +17,26 @@
 
 
     
-<form method="POST">   <!-- Form to handle the search functionality, submits to the same route with POST method -->
-<input 
-    type="text" 
-    name="country" 
-    placeholder="Enter country name"
-    value="{{ searched_country if searched_country else '' }}"
->
+<form method="POST">
 
-        <button type="submit">Search</button>
+    <input
+        type="hidden"
+        name="search_type"
+        value="country"
+    >
+
+    <input
+        type="text"
+        name="country"
+        placeholder="Enter country name"
+    >
+
+<p>COUNTRY FORM TEST</p>
+
+    <button type="submit">
+        Search By Country
+</button>
+
 </form>
 
 
