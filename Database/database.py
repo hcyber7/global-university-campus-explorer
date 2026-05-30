@@ -119,3 +119,27 @@ def get_stats():
         'total_favorites': total_favorites,
         'unique_countries': unique_countries
     }
+
+def remove_favorite(name):  # Remove a university from favorites by name
+
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+
+    c.execute(
+        "DELETE FROM favorites WHERE name = ?",
+        (name,)
+    )
+
+    conn.commit()
+    conn.close()
+
+
+def clear_all_favorites(): # Clear all entries from the favorites table
+
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+
+    c.execute("DELETE FROM favorites")
+
+    conn.commit()
+    conn.close()
