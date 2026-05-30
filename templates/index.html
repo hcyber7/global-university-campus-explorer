@@ -30,7 +30,7 @@
         placeholder="Enter country name"
     >
 
-    
+
     <button type="submit">
         Search By Country
 </button>
@@ -146,11 +146,11 @@
 
     {% endfor %}
 
-{% elif searched_country %}         # If a country was searched but no universities were found, display a message to the user
+{% elif searched_country %}         <!-- If a country was searched but no universities were found, display a message to the user -->
 
     <h2>No universities found for "{{ searched_country }}"</h2>
 
-{% elif searched_name %}            # If a university name was searched but no universities were found, display a message to the user
+{% elif searched_name %}            <!-- If a university name was searched but no universities were found, display a message to the user -->
 
     <h2>No universities found for "{{ searched_name }}"</h2>
 
