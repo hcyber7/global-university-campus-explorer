@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request
 from API.University_api import search_universities
-from Database.database import add_to_favorites, get_favorites, remove_favorites, clear_all_favorites, record_search, get_search_history, remove_search, clear_search_history
+from Database.database import add_to_favorites, get_favorites, remove_favorites, clear_all_favorites, record_search, get_search_history, remove_search, clear_search_history, init_db
+
 
 app = Flask(__name__)
+init_db() # Initialize the database when the application starts
 
 @app.route("/", methods=["GET", "POST"]) # Main route to handle the home page and search functionality
 def home():
@@ -80,6 +82,29 @@ def history():
     )
 
 
+@app.route("/delete_history", methods=["POST"])
+def delete_history():
+
+    search_id = request.form["id"]
+
+    remove_search(search_id)
+
+    history_list = get_search_history()
+
+    return render_template(
+        "history.html",
+        history=history_list
+    )
+
+@app.route("/clear_history", methods=["POST"])
+def clear_history():
+
+    clear_search_history()
+
+    return render_template(
+        "history.html",
+        history=[]
+    )
 
 if __name__ == "__main__": # Run the Flask application in debug mode
     app.run(debug=True)
