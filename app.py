@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from API.University_api import search_universities, search_universities_by_name
+from API.University_api import search_universities, search_universities_by_name, get_country_details
 from Database.database import add_to_favorites, get_favorites, remove_favorites, clear_all_favorites, record_search, get_search_history, remove_search, clear_search_history, init_db
 
 
@@ -18,6 +18,7 @@ def home():
             country = request.form["country"]
 
             universities = search_universities(country)
+            country_info = get_country_details(country)
 
             record_search(
                 f"Country: {country}",
@@ -27,7 +28,8 @@ def home():
             return render_template(
                 "index.html",
                 universities=universities,
-                searched_country=country
+                searched_country=country,
+                country_info=country_info
             )
 
         elif search_type == "name":
@@ -49,6 +51,8 @@ def home():
 
     return render_template("index.html")
 
+
+
 @app.route("/favorite", methods=["POST"]) # New button to handle saving a university to favorites
 def favorite():
 
@@ -60,6 +64,8 @@ def favorite():
 
     return f"{name} added to favorites!"
 
+
+
 @app.route("/favorites")  # New button to display the list of favorite universities
 def favorites():
 
@@ -69,6 +75,8 @@ def favorites():
         "favorites.html",
         favorites=favorites_list
     )
+
+
 
 @app.route("/delete_favorite", methods=["POST"]) # New button to handle deletion of a favorite university individually
 def delete_favorite():
@@ -84,6 +92,8 @@ def delete_favorite():
         favorites=favorites_list
     )
 
+
+
 @app.route("/clear_favorites", methods=["POST"]) # New button to clear all favorites
 def clear_favorites():
 
@@ -95,6 +105,7 @@ def clear_favorites():
     )
 
 
+
 @app.route("/history")
 def history():
 
@@ -104,6 +115,8 @@ def history():
         "history.html",
         history=history_list
     )
+
+
 
 
 @app.route("/delete_history", methods=["POST"])
@@ -120,6 +133,8 @@ def delete_history():
         history=history_list
     )
 
+
+
 @app.route("/clear_history", methods=["POST"])
 def clear_history():
 
@@ -129,6 +144,8 @@ def clear_history():
         "history.html",
         history=[]
     )
+
+
 
 if __name__ == "__main__": # Run the Flask application in debug mode
     app.run(debug=True)
