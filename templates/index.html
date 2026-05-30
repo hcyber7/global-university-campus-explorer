@@ -64,6 +64,45 @@
 
 
 
+{% if country_info %}
+
+    <h2>Country Information</h2>
+
+    <img
+        src="{{ country_info.flag }}"
+        width="120"
+    >
+
+    <p>
+        <strong>Name:</strong>
+        {{ country_info.name }}
+    </p>
+
+    <p>
+        <strong>Capital:</strong>
+        {{ country_info.capital }}
+    </p>
+
+    <p>
+        <strong>Region:</strong>
+        {{ country_info.region }}
+    </p>
+
+    <p>
+        <strong>Population:</strong>
+        {{ country_info.population }}
+    </p>
+
+    <p>
+        <strong>Area:</strong>
+        {{ country_info.area }} km²
+    </p>
+
+{% endif %}
+
+
+
+
 {% if universities %}    <!-- If universities are found, display them -->
 
     <h2>Search Results</h2>
