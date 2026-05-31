@@ -1,10 +1,9 @@
 from flask import Flask, render_template, request
-from API.University_api import (
-    search_universities,
-    search_universities_by_name
-)
+from API.University_api import (search_universities, search_universities_by_name)
 from API.country_api import get_country_details
-from Database.database import add_to_favorites, get_favorites, remove_favorites, clear_all_favorites, record_search, get_search_history, remove_search, clear_search_history, init_db
+from maps.map import create_university_map
+from Database.database import (add_to_favorites, get_favorites, remove_favorites, clear_all_favorites, 
+                               record_search, get_search_history, remove_search, clear_search_history, init_db)
 
 
 app = Flask(__name__)
@@ -150,6 +149,23 @@ def clear_history():
         history=[]
     )
 
+
+@app.route("/map")
+def map_page():
+
+    country = request.args.get("country")
+
+    universities = search_universities(country)
+
+    create_university_map(
+        universities,
+        country
+    )
+
+    return render_template(
+        "map.html",
+        country=country
+    )
 
 
 if __name__ == "__main__": # Run the Flask application in debug mode
