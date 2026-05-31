@@ -2,7 +2,12 @@
 <html>
 
 <head>
-    <title>Search History</title>
+    <title>...</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
 </head>
 
 <body>
@@ -13,14 +18,14 @@
 
         {% for search in history %}
 
-<div style="border:1px solid black; padding:15px; margin:10px;">
-
+<div class="card">
+    
     <p><strong>{{ search.query }}</strong></p>
     <p>Results Found: {{ search.count }}</p>
     <p>Date: {{ search.date }}</p>
 
     <form method="POST" action="/delete_history"> 
-
+s
         <input type="hidden" name="id" value="{{ search.id }}">
 
         <button type="submit">

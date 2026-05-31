@@ -2,15 +2,17 @@
 <html>
 
 <head>
-    <title>Global University Explorer</title>
+    <title>...</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
 </head>
-
-
-
 
 <body>
 
-    <h1>Global University & Campus Explorer</h1
+    <h1>Global University & Campus Explorer</h1>
 
 
 
@@ -64,13 +66,21 @@
 
 
 
-<form action="/favorites">  <!-- Form to navigate to the favorites page, submits a GET request to the /favorites route -->
-    <button type="submit">View Favorites</button>
-</form>
+<div class="top-buttons">
 
-<form action="/history">    <!-- Form to navigate to the search history page, submits a GET request to the /history route -->
-    <button type="submit">View Search History</button>
-</form>
+    <form action="/favorites">
+        <button type="submit">
+            View Favorites
+        </button>
+    </form>
+
+    <form action="/history">
+        <button type="submit">
+            View Search History
+        </button>
+    </form>
+
+</div>
 
 
 
@@ -131,7 +141,7 @@
 
     {% for university in universities %}  <!-- Loop through each university and display its details -->
 
-        <div style="border:1px solid black; padding:15px; margin:10px;">    <!-- Simple styling for each university entry -->
+        <div class="card">    <!-- Simple styling for each university entry -->
 
             <h3>{{ university.name }}</h3>
 

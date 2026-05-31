@@ -1,1 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    margin: 30px;
+}
 
+h1 {
+    text-align: center;
+    color: #003366;
+}
+
+h2 {
+    color: #003366;
+}
+
+form {
+    margin-bottom: 15px;
+}
+
+button {
+    background-color: #003366;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0055aa;
+}
+
+input[type="text"] {
+    padding: 8px;
+    width: 250px;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.top-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.center {
+    text-align: center;
+}
+
+.card h3 {
+    color: #003366;
+    margin-top: 0;
+}
+
+.card p {
+    margin: 8px 0;
+}

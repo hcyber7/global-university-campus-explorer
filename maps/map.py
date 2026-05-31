@@ -86,7 +86,7 @@ def create_country_map(country_name):
         if not center:
             center = (20, 0)
         
-        m = folium.Map(location=center, zoom_start=5)
+        m = folium.Map(location=center, zoom_start=9)
         folium.Marker(location=center, popup=country_name).add_to(m)
         
         map_file = 'static/maps/country_map.html'

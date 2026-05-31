@@ -2,27 +2,44 @@
 <html>
 
 <head>
-    <title>University Map</title>
+    <title>...</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
 </head>
 
 <body>
 
     <h1>University Map - {{ country }}</h1>
 
+
+
+<div class="card">
+
     <iframe
         src="/static/maps/university_map.html"
         width="100%"
-        height="500"
+        height="600"
     >
     </iframe>
 
+</div>
+
+
+
     <br><br>
+
+<div class="top-buttons">
 
     <form action="/">
         <button type="submit">
-            Home
+            ← Back to Home
         </button>
     </form>
+</div>
+
 
 </body>
 

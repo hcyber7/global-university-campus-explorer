@@ -154,6 +154,7 @@ def clear_history():
 def map_page():
 
     country = request.args.get("country")
+    country = country.title()
 
     universities = search_universities(country)
 
