@@ -6,31 +6,28 @@
 
     <link
         rel="stylesheet"
-        href="{{ url_for('static', filename='css/style.css') }}"
+        href="{{ url_for('static', filename='style.css') }}"
     >
 </head>
 
 <body>
 
-    <h1>Search History</h1>
-
+    <h1 class="center">Search History</h1>
     {% if history %}
 
         {% for search in history %}
 
 <div class="card">
     
-    <p><strong>{{ search.query }}</strong></p>
+    <h3>{{ search.query }}</h3>
     <p>Results Found: {{ search.count }}</p>
     <p>Date: {{ search.date }}</p>
 
     <form method="POST" action="/delete_history"> 
-s
+
         <input type="hidden" name="id" value="{{ search.id }}">
 
-        <button type="submit">
-            Delete
-        </button>
+        <button type="submit">Delete</button>
 
     </form>
 
@@ -44,16 +41,21 @@ s
 
     {% endif %}
 
-<form method="POST" action="/clear_history"> <!-- Form to clear all search history, submits to the /clear_history route -->
+<div class="top-buttons">
 
-    <button type="submit">
-        Clear All History
-    </button>
+    <form method="POST" action="/clear_history">
 
-</form>
+        <button type="submit">Clear All History</button>
 
-<form action="/">   <!-- Button to go back to the home page -->
-    <button type="submit">Back to Search</button>
+    </form>
+
+    <form action="/">
+
+        <button type="submit">Back to Search</button>
+
+    </form>
+
+</div>
 
 </body>
 </html>
