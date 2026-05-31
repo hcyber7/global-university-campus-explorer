@@ -20,22 +20,12 @@
 
 <form method="POST">
 
-    <input
-        type="hidden"
-        name="search_type"
-        value="country"
-    >
+    <input type="hidden" name="search_type" value="country">
 
-    <input
-        type="text"
-        name="country"
-        placeholder="Enter country name"
-    >
+    <input type="text" name="country" placeholder="Enter country name">
 
 
-    <button type="submit">
-        Search By Country
-</button>
+    <button type="submit">Search By Country</button>
 
 </form>
 
@@ -46,21 +36,11 @@
 
 <form method="POST">  <!-- Form to search for universities by name, submits to the same route with POST method -->
 
-    <input
-        type="hidden"
-        name="search_type"
-        value="name"
-    >
+    <input type="hidden" name="search_type" value="name">  <!-- Hidden input to indicate that this search is by name -->
 
-    <input
-        type="text"
-        name="name"
-        placeholder="Enter university name"
-    >
+    <input type="text" name="name" placeholder="Enter university name"> <!-- Text input for the user to enter the university name -->
 
-    <button type="submit">
-        Search By Name
-    </button>
+    <button type="submit">Search By Name</button> <!-- Submit button for the search form -->
 
 </form>
 
@@ -69,15 +49,11 @@
 <div class="top-buttons">
 
     <form action="/favorites">
-        <button type="submit">
-            View Favorites
-        </button>
+        <button type="submit">View Favorites</button>
     </form>
 
     <form action="/history">
-        <button type="submit">
-            View Search History
-        </button>
+        <button type="submit">View Search History</button>
     </form>
 
 </div>
@@ -129,11 +105,7 @@
 
     <form action="/map">
 
-    <input
-        type="hidden"
-        name="country"
-        value="{{ searched_country }}"
-    >
+    <input type="hidden" name="country" value="{{ searched_country }}">
 
     <button type="submit">View Map</button>
 
