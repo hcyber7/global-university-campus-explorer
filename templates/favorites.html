@@ -33,10 +33,7 @@
 
         <form method="POST" action="/delete_favorite">
 
-                <input
-                type="hidden"
-                name="name"
-                value="{{ university.name }}" >
+                <input type="hidden" name="name" value="{{ university.name }}" > <!-- Hidden input to identify which university to delete -->
 
                 <button type="submit"> Remove </button>
 
@@ -55,15 +52,12 @@
 <div class="top-buttons">
 
     <form method="POST" action="/clear_favorites">
-        <button type="submit">
-            Clear All Favorites
-        </button>
+
+        <button type="submit">Clear All Favorites</button>
     </form>
 
     <form action="/">
-        <button type="submit">
-            Back to Search
-        </button>
+        <button type="submit">Back to Search</button>
     </form>
 
 </div>
