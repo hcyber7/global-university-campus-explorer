@@ -1,5 +1,5 @@
 import folium
-from api.geocoding_services import get_location
+from API.Geocoding_services import get_location
 import os
 import json
 import random
