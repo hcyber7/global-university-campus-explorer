@@ -2,22 +2,22 @@
   {
     "name": "IU Internationale Hochschule GmbH",
     "country": "Germany",
-    "lat": 52.12899721101748,
-    "lon": 10.84285846657795,
+    "lat": 50.70213992129744,
+    "lon": 11.0972018752247,
     "website": "https://www.iu-fernstudium.de/"
   },
   {
     "name": "AKAD Hochschulen f\u00fcr Berufst\u00e4tige, Fachhochschule Leipzig",
     "country": "Germany",
-    "lat": 52.25344787192284,
-    "lon": 10.888801921392881,
+    "lat": 51.8051845450073,
+    "lon": 9.923461192321216,
     "website": "http://www.akad.de/"
   },
   {
     "name": "Alice-Salomon-Fachhochschule f\u00fcr Sozialarbeit und Sozialp\u00e4dagogik Berlin",
     "country": "Germany",
-    "lat": 51.2127290178521,
-    "lon": 10.261186975488881,
+    "lat": 52.151261172230754,
+    "lon": 10.694891894251784,
     "website": "http://www.asfh-berlin.de/"
   }
 ]
