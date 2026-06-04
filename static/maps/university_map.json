@@ -2,41 +2,22 @@
   {
     "name": "IU Internationale Hochschule GmbH",
     "country": "Germany",
-    "state": "Thuringia",
-    "lat": 51.165126,
-    "lon": 10.451526,
+    "lat": 52.12899721101748,
+    "lon": 10.84285846657795,
     "website": "https://www.iu-fernstudium.de/"
   },
   {
     "name": "AKAD Hochschulen f\u00fcr Berufst\u00e4tige, Fachhochschule Leipzig",
     "country": "Germany",
-    "state": null,
-    "lat": 51.165126,
-    "lon": 10.451526,
+    "lat": 52.25344787192284,
+    "lon": 10.888801921392881,
     "website": "http://www.akad.de/"
   },
   {
     "name": "Alice-Salomon-Fachhochschule f\u00fcr Sozialarbeit und Sozialp\u00e4dagogik Berlin",
     "country": "Germany",
-    "state": null,
-    "lat": 51.165126,
-    "lon": 10.451526,
+    "lat": 51.2127290178521,
+    "lon": 10.261186975488881,
     "website": "http://www.asfh-berlin.de/"
-  },
-  {
-    "name": "Augustana Hochschule Neuendettelsau",
-    "country": "Germany",
-    "state": null,
-    "lat": 51.165126,
-    "lon": 10.451526,
-    "website": "http://www.augustana.de/"
-  },
-  {
-    "name": "Kirchliche Hochschule Bethel",
-    "country": "Germany",
-    "state": null,
-    "lat": 51.165126,
-    "lon": 10.451526,
-    "website": "http://www.bethel.de/"
   }
 ]
