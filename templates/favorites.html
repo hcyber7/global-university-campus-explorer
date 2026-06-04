@@ -2,65 +2,91 @@
 <html>
 
 <head>
-    <title>Favorites</title>
-
-    <link
-        rel="stylesheet"
-        href="{{ url_for('static', filename='style.css') }}"
-    >
+    <title>Favorites - Global University Campus Explorer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
+    <!-- Floating background shapes -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
 
-    <h1>Saved Favorite Universities</h1>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>❤️ My Favorite Universities</h1>
+            <p class="subtitle">Your collection of favorite universities</p>
+        </div>
+    </header>
 
-    {% if favorites %}
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/favorites" class="nav-link active">❤️ Favorites</a>
+            <form action="/history" class="nav-form">
+                <button type="submit" class="nav-button">📋 History</button>
+            </form>
+        </div>
+    </nav>
 
-        {% for university in favorites %}
-
-            <div class="card">    <!-- Simple styling for each university entry -->
-
-                <h3>{{ university.name }}</h3>
-
-                <p>Country: {{ university.country }}</p>
-
-                <p>
-                    Website:
-                    <a href="{{ university.website }}" target="_blank">
-                        Visit Website
-                    </a>
-                </p>
-
-        <form method="POST" action="/delete_favorite">
-
-                <input type="hidden" name="name" value="{{ university.name }}" > <!-- Hidden input to identify which university to delete -->
-
-                <button type="submit"> Remove </button>
-
-        </form>
-
+    <!-- Main Content -->
+    <main class="container">
+        {% if favorites %}
+        <section class="results-section">
+            <div class="results-header">
+                <h2>Your Saved Universities</h2>
+                <p class="result-count">{{ favorites|length }} favorite/favorites</p>
             </div>
 
-        {% endfor %}
+            <div class="universities-grid">
+                {% for university in favorites %}
+                <div class="university-card">
+                    <div class="card-header">
+                        <h3>{{ university.name }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="country-tag">📍 {{ university.country }}</p>
+                        <a href="{{ university.website }}" target="_blank" class="website-link">Visit Website →</a>
+                    </div>
+                    <div class="card-footer">
+                        <form method="POST" action="/delete_favorite">
+                            <input type="hidden" name="name" value="{{ university.name }}">
+                            <button type="submit" class="btn btn-favorite">Remove</button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
 
-{% else %}
+        <div class="action-buttons" style="margin-top: 40px; text-align: center;">
+            <form method="POST" action="/clear_favorites" style="display: inline-block; margin-right: 15px;">
+                <button type="submit" class="btn btn-secondary">🗑️ Clear All</button>
+            </form>
+            <form action="/" style="display: inline-block;">
+                <button type="submit" class="btn btn-primary" style="width: auto;">← Back to Search</button>
+            </form>
+        </div>
 
-    <h2>No favorites saved yet.</h2>
+        {% else %}
+        <section class="no-results">
+            <h2>📭 No Favorites Yet</h2>
+            <p>Start exploring universities and add your favorites!</p>
+            <form action="/" style="margin-top: 30px;">
+                <button type="submit" class="btn btn-primary" style="width: auto; max-width: 300px;">← Back to Search</button>
+            </form>
+        </section>
+        {% endif %}
+    </main>
 
-{% endif %}
-
-<div class="top-buttons">
-
-    <form method="POST" action="/clear_favorites">
-
-        <button type="submit">Clear All Favorites</button>
-    </form>
-
-    <form action="/">
-        <button type="submit">Back to Search</button>
-    </form>
-
-</div>
-
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Global University Campus Explorer. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
+
 </html>

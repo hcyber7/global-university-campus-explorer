@@ -2,24 +2,79 @@
 <html>
 
 <head>
-    <title>University Map</title>
+    <title>University Map - Global University Campus Explorer</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .map-container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin: 30px 0;
+        }
+
+        .map-container iframe {
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .map-title {
+            text-align: center;
+            color: #333;
+            margin: 0 0 20px 0;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Floating background shapes -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
 
-    <h1>University Map - {{ country }}</h1>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>🗺️ University Map</h1>
+            <p class="subtitle">{{ country }} Universities</p>
+        </div>
+    </header>
 
-    <div style="text-align:center; margin: 20px;">
-        <iframe src="/static/maps/university_map.html" width="90%" height="600" style="border: 1px solid #ccc;"></iframe>
-    </div>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="/" class="nav-link">Home</a>
+            <form action="/favorites" class="nav-form">
+                <button type="submit" class="nav-button">❤️ Favorites</button>
+            </form>
+            <form action="/history" class="nav-form">
+                <button type="submit" class="nav-button">📋 History</button>
+            </form>
+        </div>
+    </nav>
 
-    <div class="top-buttons" style="text-align: center; margin-top: 20px;">
-        <form action="/">
-            <button type="submit">← Back to Home</button>
-        </form>
-    </div>
+    <!-- Main Content -->
+    <main class="container">
+        <div class="map-container">
+            <h2 class="map-title">Universities in {{ country }}</h2>
+            <iframe src="/static/maps/university_map.html" width="100%" height="600"></iframe>
+        </div>
 
+        <div style="text-align: center; margin-top: 30px;">
+            <form action="/">
+                <button type="submit" class="btn btn-primary" style="width: auto; max-width: 300px;">← Back to Search</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Global University Campus Explorer. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 
 </html>
