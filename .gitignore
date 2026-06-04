@@ -1,0 +1,16 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# SQLite database
+*.db
+
+# Generated maps
+static/maps/*.html
+static/maps/*.json
+
+# Pytest cache
+.pytest_cache/
+
+# VS Code settings
+.vscode/
