@@ -169,10 +169,6 @@ def map_page():
     )
 
 
-if __name__ == "__main__": # Run the Flask application in debug mode
-    app.run(debug=True)
-
-
 #git restore data/universities.db
 #git restore maps/__pycache__/map.cpython-314.pyc
 #git restore static/maps/university_map.html
