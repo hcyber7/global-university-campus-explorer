@@ -1,57 +1,18 @@
 import folium
 from API.Geocoding_services import get_location
-from API.nominatim_api import get_coordinates
 import os
 import json
-import time
 
-def get_university_coordinates(university_name, country_name, state_province=None):
-    """
-    Get precise coordinates for a university using Nominatim.
-    Tries full address first, then falls back to simpler searches.
-    """
-    try:
-        # Try: "University Name, State, Country"
-        if state_province:
-            search_query = f"{university_name}, {state_province}, {country_name}"
-            result = get_coordinates(search_query)
-            if result:
-                time.sleep(1)  # Rate limiting
-                return (float(result['latitude']), float(result['longitude']))
-        
-        time.sleep(1)  # Rate limiting between attempts
-        
-        # Try: "University Name, Country"
-        search_query = f"{university_name}, {country_name}"
-        result = get_coordinates(search_query)
-        if result:
-            time.sleep(1)  # Rate limiting
-            return (float(result['latitude']), float(result['longitude']))
-        
-        time.sleep(1)  # Rate limiting between attempts
-        
-        # Fallback: just university name
-        result = get_coordinates(university_name)
-        if result:
-            time.sleep(1)  # Rate limiting
-            return (float(result['latitude']), float(result['longitude']))
-        
-        return None
-    except Exception as e:
-        print(f"Error getting coordinates for {university_name}: {e}")
-        return None
 
 def create_university_map(universities, country_name):
-    """Create map data with precise university locations"""
+    """Create map with university locations"""
     os.makedirs('static/maps', exist_ok=True)
     
     try:
-        # Get country center coordinates for map centering
+        # Get country center coordinates
         country_coords = get_location(country_name)
-        if not country_coords:
-            country_coords = (51.5, 10.0)  # Default to Europe center
         
-        # Map of countries to approximate coordinates (fallback)
+        # Hardcoded country centers (fallback)
         country_centers = {
             'Germany': (51.165126, 10.451526),
             'United States': (37.0902, -95.7129),
@@ -70,54 +31,61 @@ def create_university_map(universities, country_name):
             'Canada': (56.1304, -106.3468),
         }
         
-        center = country_centers.get(country_name, country_coords)
+        # Use coordinates if available, else use hardcoded center
+        if country_coords:
+            center = country_coords
+        else:
+            center = country_centers.get(country_name, (51.5, 10.0))
         
         map_data = []
-        # Get precise coordinates for each university
-        for i, uni in enumerate(universities):
+        
+        # Create map with universities
+        m = folium.Map(location=center, zoom_start=6)
+        
+        for uni in universities:
             uni_name = uni.get('name', 'N/A')
-            state = uni.get('state-province')
+            website = uni.get('web_pages', [''])[0] if uni.get('web_pages') else ''
+            country = uni.get('country', '')
+            state = uni.get('state-province', 'N/A')
             
-            # Try to get precise coordinates from Nominatim
-            coords = get_university_coordinates(uni_name, country_name, state)
+            # Use center point for all universities (all in same country)
+            lat, lon = center
             
-            if coords:
-                lat, lon = coords
-            else:
-                # Fallback to country center if Nominatim fails
-                lat, lon = center
+            # Add marker to map
+            folium.Marker(
+                location=(lat, lon),
+                popup=f"<b>{uni_name}</b><br>Country: {country}<br>State: {state}<br><a href='{website}' target='_blank'>Website</a>",
+                tooltip=uni_name,
+                icon=folium.Icon(color='blue', icon='info-sign')
+            ).add_to(m)
             
             map_data.append({
                 'name': uni_name,
-                'country': uni.get('country', ''),
+                'country': country,
                 'state': state,
                 'lat': lat,
                 'lon': lon,
-                'website': uni.get('web_pages', [''])[0] if uni.get('web_pages') else ''
+                'website': website
             })
         
-        # Save as JSON for D3
+        # Save as JSON
         map_file = 'static/maps/university_map.json'
         with open(map_file, 'w') as f:
-            json.dump(map_data, f)
+            json.dump(map_data, f, indent=2)
         
-        # Also create Folium backup map
-        m = folium.Map(location=center, zoom_start=6)
-        
-        for uni_data in map_data:
-            folium.Marker(
-                location=(uni_data['lat'], uni_data['lon']),
-                popup=f"<b>{uni_data['name']}</b><br>{uni_data['country']}",
-                tooltip=uni_data['name'],
-                icon=folium.Icon(color='blue', icon='info-sign')
-            ).add_to(m)
-        
+        # Save as HTML
         folium_file = 'static/maps/university_map.html'
         m.save(folium_file)
+        
+        print(f"✓ Map created: {folium_file}")
         return True
+        
     except Exception as e:
         print(f"Map error: {e}")
+        import traceback
+        traceback.print_exc()
         return False
+
 
 def create_country_map(country_name):
     """Create a simple map for a country"""
@@ -134,5 +102,6 @@ def create_country_map(country_name):
         map_file = 'static/maps/country_map.html'
         m.save(map_file)
         return True
-    except:
+    except Exception as e:
+        print(f"Error creating country map: {e}")
         return False
