@@ -1,20 +1,57 @@
 import folium
 from API.Geocoding_services import get_location
+from API.nominatim_api import get_coordinates
 import os
 import json
-import random
+import time
+
+def get_university_coordinates(university_name, country_name, state_province=None):
+    """
+    Get precise coordinates for a university using Nominatim.
+    Tries full address first, then falls back to simpler searches.
+    """
+    try:
+        # Try: "University Name, State, Country"
+        if state_province:
+            search_query = f"{university_name}, {state_province}, {country_name}"
+            result = get_coordinates(search_query)
+            if result:
+                time.sleep(1)  # Rate limiting
+                return (float(result['latitude']), float(result['longitude']))
+        
+        time.sleep(1)  # Rate limiting between attempts
+        
+        # Try: "University Name, Country"
+        search_query = f"{university_name}, {country_name}"
+        result = get_coordinates(search_query)
+        if result:
+            time.sleep(1)  # Rate limiting
+            return (float(result['latitude']), float(result['longitude']))
+        
+        time.sleep(1)  # Rate limiting between attempts
+        
+        # Fallback: just university name
+        result = get_coordinates(university_name)
+        if result:
+            time.sleep(1)  # Rate limiting
+            return (float(result['latitude']), float(result['longitude']))
+        
+        return None
+    except Exception as e:
+        print(f"Error getting coordinates for {university_name}: {e}")
+        return None
 
 def create_university_map(universities, country_name):
-    """Create map data for D3 visualization"""
+    """Create map data with precise university locations"""
     os.makedirs('static/maps', exist_ok=True)
     
     try:
-        # Get country center coordinates for clustering
+        # Get country center coordinates for map centering
         country_coords = get_location(country_name)
         if not country_coords:
             country_coords = (51.5, 10.0)  # Default to Europe center
         
-        # Map of countries to approximate coordinates (for better distribution)
+        # Map of countries to approximate coordinates (fallback)
         country_centers = {
             'Germany': (51.165126, 10.451526),
             'United States': (37.0902, -95.7129),
@@ -36,19 +73,24 @@ def create_university_map(universities, country_name):
         center = country_centers.get(country_name, country_coords)
         
         map_data = []
-        # Add slight randomization to coordinates for better visualization
+        # Get precise coordinates for each university
         for i, uni in enumerate(universities):
-            # Generate approximate coordinates around country center
-            # This creates a spread pattern for visualization
-            lat_offset = random.uniform(-3, 3)
-            lon_offset = random.uniform(-3, 3)
+            uni_name = uni.get('name', 'N/A')
+            state = uni.get('state-province')
             
-            lat = center[0] + lat_offset
-            lon = center[1] + lon_offset
+            # Try to get precise coordinates from Nominatim
+            coords = get_university_coordinates(uni_name, country_name, state)
+            
+            if coords:
+                lat, lon = coords
+            else:
+                # Fallback to country center if Nominatim fails
+                lat, lon = center
             
             map_data.append({
-                'name': uni.get('name', 'N/A'),
+                'name': uni_name,
                 'country': uni.get('country', ''),
+                'state': state,
                 'lat': lat,
                 'lon': lon,
                 'website': uni.get('web_pages', [''])[0] if uni.get('web_pages') else ''
