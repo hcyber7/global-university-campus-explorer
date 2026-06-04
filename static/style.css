@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #0A192F 0%, #112240 50%, #233554 100%);
+    background: linear-gradient(135deg, #0f172e 0%, #1a2a5c 50%, #0d1f3c 100%);
     color: #333;
     line-height: 1.6;
     min-height: 100vh;
@@ -43,46 +43,21 @@ body::after {
     z-index: 0;
 }
 
-@keyframes gradientShift {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
 @keyframes floatShape1 {
-    0%, 100% {
-        transform: translate(0, 0) scale(1);
-    }
-    50% {
-        transform: translate(30px, 40px) scale(1.05);
-    }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(30px, 40px) scale(1.05); }
 }
 
 @keyframes floatShape2 {
-    0%, 100% {
-        transform: translate(0, 0) scale(1);
-    }
-    50% {
-        transform: translate(-40px, -30px) scale(0.95);
-    }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-40px, -30px) scale(0.95); }
 }
 
 @keyframes floatShape3 {
-    0%, 100% {
-        transform: translate(0, 0) scale(1);
-    }
-    50% {
-        transform: translate(50px, -20px) scale(1.02);
-    }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(50px, -20px) scale(1.02); }
 }
 
-/* Floating shapes in background */
 .bg-shape {
     position: fixed;
     border-radius: 50%;
@@ -128,33 +103,36 @@ body::after {
 
 /* Header */
 .header {
-    background: linear-gradient(135deg, #0f1f3f 0%, #1e3a5f 100%);
+    background: linear-gradient(135deg, #0a1628 0%, #1a2a5c 100%);
     color: white;
     padding: 40px 0;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-bottom: 3px solid #ffffff22;
 }
 
 .header h1 {
     font-size: 2.5em;
     margin-bottom: 10px;
     letter-spacing: -0.5px;
+    color: #ffffff;
 }
 
 .subtitle {
     font-size: 1.1em;
-    opacity: 0.95;
+    opacity: 0.90;
     font-weight: 300;
+    color: #cbd5e1;
 }
 
 /* Navigation Bar */
 .navbar {
-    background: white;
+    background: #ffffff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-    sticky: top;
     position: sticky;
     top: 0;
     z-index: 100;
+    border-bottom: 2px solid #1a2a5c;
 }
 
 .nav-content {
@@ -166,14 +144,14 @@ body::after {
 
 .nav-link {
     text-decoration: none;
-    color: #112240;
+    color: #1a2a5c;
     font-weight: 600;
     font-size: 1em;
     transition: color 0.3s ease;
 }
 
 .nav-link:hover {
-    color: #3B82F6;
+    color: #0047ab;
 }
 
 .nav-form {
@@ -181,7 +159,7 @@ body::after {
 }
 
 .nav-button {
-    background: #112240;
+    background: #1a2a5c;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -193,9 +171,9 @@ body::after {
 }
 
 .nav-button:hover {
-    background: #3B82F6;
+    background: #0047ab;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 71, 171, 0.4);
 }
 
 /* Main Content */
@@ -210,7 +188,7 @@ main {
 }
 
 .search-section h2 {
-    color: #333;
+    color: #ffffff;
     font-size: 2em;
     margin-bottom: 30px;
     text-align: center;
@@ -236,7 +214,7 @@ main {
 }
 
 .search-box h3 {
-    color: #112240;
+    color: #1a2a5c;
     margin-bottom: 20px;
     font-size: 1.3em;
 }
@@ -258,7 +236,7 @@ input[type="text"] {
 
 input[type="text"]:focus {
     outline: none;
-    border-color: #3B82F6;
+    border-color: #1a2a5c;
 }
 
 /* Buttons */
@@ -274,38 +252,38 @@ input[type="text"]:focus {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #112240 0%, #3B82F6 100%);
+    background: linear-gradient(135deg, #1a2a5c 0%, #0047ab 100%);
     color: white;
     width: 100%;
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 71, 171, 0.4);
 }
 
 .btn-secondary {
-    background: #0A192F;
+    background: #1a2a5c;
     color: white;
     margin-top: 20px;
 }
 
 .btn-secondary:hover {
-    background: #3B82F6;
+    background: #0047ab;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 71, 171, 0.4);
 }
 
 .btn-favorite {
-    background: #2c3e50;
+    background: #1a2a5c;
     color: white;
     width: 100%;
 }
 
 .btn-favorite:hover {
-    background: #112240;
+    background: #0047ab;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(26, 42, 92, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 71, 171, 0.4);
 }
 
 /* Country Info Section */
@@ -345,7 +323,7 @@ input[type="text"]:focus {
 }
 
 .country-details h3 {
-    color: #112240;
+    color: #1a2a5c;
     font-size: 1.6em;
     margin-bottom: 20px;
 }
@@ -375,12 +353,12 @@ input[type="text"]:focus {
 }
 
 .results-header h2 {
-    color: #333;
+    color: #ffffff;
     font-size: 2em;
 }
 
 .result-count {
-    background: #112240;
+    background: #1a2a5c;
     color: white;
     padding: 8px 15px;
     border-radius: 20px;
@@ -407,16 +385,16 @@ input[type="text"]:focus {
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    border-top: 4px solid #3B82F6;
+    border-top: 4px solid #1a2a5c;
 }
 
 .university-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 8px 25px rgba(0, 102, 204, 0.3);
+    box-shadow: 0 8px 25px rgba(26, 42, 92, 0.3);
 }
 
 .card-header {
-    background: linear-gradient(135deg, #112240 0%, #3B82F6 100%);
+    background: linear-gradient(135deg, #1a2a5c 0%, #0047ab 100%);
     color: white;
     padding: 20px;
 }
@@ -444,7 +422,8 @@ input[type="text"]:focus {
 
 .website-link {
     display: inline-block;
-    color: #3B82F6;
+    /* FIX: was orange (#ff6600 or similar) on white — now navy, fully readable */
+    color: #1a2a5c;
     text-decoration: none;
     font-weight: 600;
     margin: 10px 0;
@@ -452,7 +431,7 @@ input[type="text"]:focus {
 }
 
 .website-link:hover {
-    color: #0A192F;
+    color: #0047ab;
     text-decoration: underline;
 }
 
@@ -509,7 +488,7 @@ input[type="text"]:focus {
 }
 
 .history-card .card-header {
-    background: linear-gradient(135deg, #112240 0%, #3B82F6 100%);
+    background: linear-gradient(135deg, #1a2a5c 0%, #0047ab 100%);
     color: white;
     padding: 20px;
 }
@@ -521,7 +500,7 @@ input[type="text"]:focus {
 }
 
 .result-badge {
-    background: #3B82F6;
+    background: #1a2a5c;
     color: white;
     padding: 4px 10px;
     border-radius: 12px;
@@ -531,7 +510,7 @@ input[type="text"]:focus {
 
 /* Footer */
 .footer {
-    background: #333;
+    background: #0a1628;
     color: #fff;
     text-align: center;
     padding: 30px 0;
