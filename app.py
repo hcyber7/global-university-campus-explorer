@@ -170,6 +170,18 @@ def map_page():
     )
 
 
+@app.route("/location")
+def university_location():
+
+    university_name = request.args.get("name")
+
+    result = get_coordinates(university_name)
+
+    if result:
+        return result
+
+    return {"error": "Location not found"}
+
 if __name__ == "__main__": # Run the Flask application in debug mode
     app.run(debug=True)
 
