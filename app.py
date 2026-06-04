@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 from API.University_api import (search_universities, search_universities_by_name)
 from API.country_api import get_country_details
 from maps.map import create_university_map
-from API.nominatim_api import get_coordinates
 from Database.database import (add_to_favorites, get_favorites, remove_favorites, clear_all_favorites, 
                                record_search, get_search_history, remove_search, clear_search_history, init_db)
 
@@ -168,22 +167,6 @@ def map_page():
         "map.html",
         country=country
     )
-
-
-@app.route("/location")
-def university_location():
-
-    university_name = request.args.get("name")
-
-    result = get_coordinates(university_name)
-
-    if result:
-        return result
-
-    return {"error": "Location not found"}
-
-if __name__ == "__main__": # Run the Flask application in debug mode
-    app.run(debug=True)
 
 
 #git restore data/universities.db
