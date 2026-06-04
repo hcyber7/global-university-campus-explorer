@@ -1,26 +1,31 @@
 import requests
 
 def get_location(place_name):
-    """Get coordinates using Nominatim"""
+    """Get coordinates using Open-Meteo Geocoding API"""
     try:
-        url = "https://nominatim.openstreetmap.org/search"
+        url = "https://geocoding-api.open-meteo.com/v1/search"
         response = requests.get(url, params={
-            "q": place_name,
-            "format": "json",
-            "limit": 1
-        }, headers={"User-Agent": "UniversityExplorer"}, timeout=10)
+            "name": place_name,
+            "count": 1,
+            "language": "en",
+            "format": "json"
+        }, timeout=10)
         
         if response.status_code == 200:
             data = response.json()
-            if data:
-                return float(data[0]['lat']), float(data[0]['lon'])
+            if data.get('results'):
+                result = data['results'][0]
+                return float(result['latitude']), float(result['longitude'])
         return None
-    except:
+    except Exception as e:
+        print(f"Error getting location: {e}")
         return None
+
 
 def get_country_center(country_name):
     """Get country center coordinates"""
     try:
         return get_location(country_name)
-    except:
+    except Exception as e:
+        print(f"Error getting country center: {e}")
         return None
