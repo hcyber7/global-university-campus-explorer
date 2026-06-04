@@ -36,8 +36,6 @@ The application will allow users to:
 - UI improvements
 - Final presentation preparation
 
-
-
 ## Technical Scope
 
 - Flask: The main framework of the web application
@@ -47,12 +45,12 @@ The application will allow users to:
 - HTML: used to create the structure of web pages
 - CSS: used to style and design the pages
 
-
 ## Initial API's Used:
 
 - University Domains API: https://github.com/Hipo/university-domains-list-api
 - REST Countries API: https://restcountries.com/
 - Open-Meteo Geocoding: https://open-meteo.com/en/docs/geocoding-api
+= Nominatim API: https://nominatim.openstreetmap.org/search
 
 ## Backend Layer Plan:
 
