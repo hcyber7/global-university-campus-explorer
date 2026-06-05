@@ -3,7 +3,7 @@ from API.University_api import (search_universities, search_universities_by_name
 from API.country_api import get_country_details
 from maps.map import create_university_map
 from Database.database import (add_to_favorites, get_favorites, remove_favorites, clear_all_favorites, 
-                               record_search, get_search_history, remove_search, clear_search_history, init_db)
+                               record_search, get_search_history, remove_search, clear_search_history, init_db) # Imports necessary modules and functions from Flask, the APIs for universities and country details, the map creation function, and the database functions for managing favorites and search history.
 
 
 app = Flask(__name__) # Creates the Flask application ----> Starting the Website.
@@ -123,7 +123,7 @@ def history():          # New button to display the search history
 
 
 
-@app.route("/delete_history", methods=["POST"])
+@app.route("/delete_history", methods=["POST"]) # New button to handle deletion of a search from the search history individually
 def delete_history():
 
     search_id = request.form["id"]
@@ -139,7 +139,7 @@ def delete_history():
 
 
 
-@app.route("/clear_history", methods=["POST"])
+@app.route("/clear_history", methods=["POST"])  # New button to clear the entire search history at once instead of deleting each search individually
 def clear_history():
 
     clear_search_history()
@@ -150,7 +150,7 @@ def clear_history():
     )
 
 
-@app.route("/map")
+@app.route("/map")  # New button to display the map of universities in a specific country
 def map_page():
 
     country = request.args.get("country")
@@ -171,6 +171,3 @@ def map_page():
 
 if __name__ == "__main__": # Run the Flask application in debug mode
     app.run(debug=True)
-
-
-
