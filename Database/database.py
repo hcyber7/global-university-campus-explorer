@@ -1,5 +1,5 @@
 import sqlite3
-from datetime import datetime
+from datetime import datetime  
 import os
 
 DB_PATH = 'data/universities.db'
@@ -19,7 +19,7 @@ def init_db():
         domain TEXT,
         added_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )''')
-    
+
     c.execute('''CREATE TABLE IF NOT EXISTS search_history (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         query TEXT NOT NULL,
