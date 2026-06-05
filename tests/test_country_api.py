@@ -1,19 +1,14 @@
 import unittest
 from unittest.mock import patch
-
-from API.country_api import (
-    get_country_info,
-    get_country_flag,
-    get_country_details
-)
+from API.country_api import (get_country_info, get_country_flag, get_country_details)
 
 
 class TestCountryAPI(unittest.TestCase):
 
     @patch("API.country_api.requests.get")
-    def test_get_country_info(self, mock_get):
+    def test_get_country_info(self, mock_get): # Mocks the requests.get method to simulate an API response for retrieving country information.
 
-        mock_get.return_value.status_code = 200
+        mock_get.return_value.status_code = 200 # Simulates a successful API response with a status code of 200.
         mock_get.return_value.json.return_value = [
             {"name": {"common": "Germany"}}
         ]

@@ -1,9 +1,6 @@
 import unittest
 
-from charts.chart import (
-    create_country_distribution_chart,
-    create_stats_chart
-)
+from charts.chart import (create_country_distribution_chart, create_stats_chart)
 
 class TestChart(unittest.TestCase): 
 
